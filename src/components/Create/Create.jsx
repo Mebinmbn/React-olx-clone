@@ -15,18 +15,18 @@ const Create = () => {
     item_Name: "",
     category: "",
     price: "",
-    images: [], // Array to store multiple images
+    images: [],
   });
 
-  const [uploadedUrls, setUploadedUrls] = useState([]); // To store the uploaded image URLs
+  // eslint-disable-next-line no-unused-vars
+  const [uploadedUrls, setUploadedUrls] = useState([]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "images") {
-      // Handle multiple file uploads
       setFormData((prevData) => ({
         ...prevData,
-        [name]: Array.from(files), // Store multiple files as an array
+        [name]: Array.from(files),
       }));
     } else {
       setFormData((prevData) => ({
@@ -39,20 +39,18 @@ const Create = () => {
   const uploadData = async (e) => {
     e.preventDefault();
     let date = new Date();
-    let imageFiles = formData.images; // Assuming formData.images is an array of images
+    let imageFiles = formData.images;
     try {
-      // Create an array of upload promises
       const uploadPromises = imageFiles.map(async (image) => {
         const storageRef = ref(storage, `files/${image.name}`);
-        // Upload the image to Firebase storage
+
         const snapshot = await uploadBytes(storageRef, image);
-        // Get the image download URL after upload
+
         const downloadURL = await getDownloadURL(snapshot.ref);
         console.log(`Uploaded: ${image.name}, URL: ${downloadURL}`);
-        return downloadURL; // Return the URL
+        return downloadURL;
       });
 
-      // Wait for all the uploads and URLs to complete
       const downloadURLs = await Promise.all(uploadPromises);
       if (downloadURLs.length > 0) {
         const docRef = await addDoc(collection(fireBase, "items"), {

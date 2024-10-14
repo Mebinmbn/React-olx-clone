@@ -104,7 +104,6 @@ const Posts = ({ searchText }) => {
   );
 };
 
-// Prop types validation
 Posts.propTypes = {
   searchText: PropTypes.string.isRequired,
 };
