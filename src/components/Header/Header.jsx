@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./Header.css";
 import OlxLogo from "../../assets/OlxLogo";
 import Search from "../../assets/Search";
@@ -12,6 +12,7 @@ import { signOut } from "firebase/auth";
 import PropTypes from "prop-types";
 
 const Header = ({ setSearchText }) => {
+  const [searchValue, setSearchValue] = useState("");
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -54,10 +55,13 @@ const Header = ({ setSearchText }) => {
             <input
               type="text"
               placeholder="Find car, mobile phone and more..."
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={(e) => setSearchValue(e.target.value)}
             />
           </div>
-          <div className="searchAction">
+          <div
+            className="searchAction"
+            onClick={() => setSearchText(searchValue)}
+          >
             <Search color="#ffffff" />
           </div>
         </div>

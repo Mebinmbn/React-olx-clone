@@ -23,6 +23,8 @@
   
   .recommendations .cards {
     display: flex;
+    flex-wrap: wrap;
+    
   }
   
   .moreView .cards {
@@ -89,5 +91,9 @@
   .recommendations .heading span {
     font-size: 24px;
     color: #002f34;
+  }
+  .recommendations .card{
+    margin-bottom: 20px;
+    margin-right: 40px;
   }
   

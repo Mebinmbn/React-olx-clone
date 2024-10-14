@@ -53,6 +53,10 @@
     height: 100%;
     display: flex;
   }
+
+  /* .productSearch .input:focus{
+    border: 1px solid #23e5db;
+  } */
   
   .productSearch .input input {
     border-color: transparent;
