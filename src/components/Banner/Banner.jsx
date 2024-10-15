@@ -6,8 +6,8 @@ function Banner() {
   return (
     <div className="bannerParentDiv">
       <div className="bannerChildDiv">
-        <div className="menuBar">
-          <div className="categoryMenu">
+        <div className="menuBar" style={{ cursor: "pointer" }}>
+          <div className="categoryMenu ">
             <span>ALL CATEGORIES</span>
             <Arrow />
           </div>

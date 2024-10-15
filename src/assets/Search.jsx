@@ -7,6 +7,7 @@ export default function Search(props) {
       height="25px"
       viewBox="0 0 1024 1024"
       data-aut-id="icon"
+      // eslint-disable-next-line react/prop-types
       color={props.color ? props.color : ""}
       className="my-costom-class"
       fillRule="evenodd"

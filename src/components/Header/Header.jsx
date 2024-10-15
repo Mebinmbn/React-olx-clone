@@ -47,7 +47,7 @@ const Header = ({ setSearchText }) => {
         </div>
         <div className="placeSearch">
           <Search />
-          <input type="text" />
+          <input type="text" placeholder="Kerala" />
           <Arrow />
         </div>
         <div className="productSearch">
