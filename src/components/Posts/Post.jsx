@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { postContext } from "../../contexts/PostsContext";
 import PropTypes from "prop-types";
 
-const Posts = ({ searchText }) => {
+const Posts = ({ searchText, selectedCategory, setSelectedCategory }) => {
   const { fireBase } = useContext(FireBaseContext);
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
@@ -27,9 +27,18 @@ const Posts = ({ searchText }) => {
       });
   }, [fireBase]);
 
-  const filteredProducts = products.filter((product) =>
-    product.productName.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const filteredProducts = products.filter((product) => {
+    if (searchText) {
+      setSelectedCategory("");
+      return product.productName
+        .toLowerCase()
+        .includes(searchText.toLowerCase());
+    }
+    if (selectedCategory) {
+      return product.category.toLowerCase() === selectedCategory.toLowerCase();
+    }
+    return products;
+  });
 
   console.log("FilteredProd", filteredProducts);
 
@@ -41,11 +50,13 @@ const Posts = ({ searchText }) => {
           <span>View more</span>
         </div>
         <div className="cards">
-          {products.map((item, index) => (
+          {filteredProducts.map((item, index) => (
             <div
               className="card"
               onClick={() => {
                 setPostData(item);
+                localStorage.setItem("postData", JSON.stringify(item));
+                console.log("Saved to localStorage: ", item);
                 navigate("/viewproduct");
               }}
               key={index}
@@ -106,6 +117,8 @@ const Posts = ({ searchText }) => {
 
 Posts.propTypes = {
   searchText: PropTypes.string.isRequired,
+  selectedCategory: PropTypes.string.isRequired,
+  setSelectedCategory: PropTypes.func.isRequired,
 };
 
 export default Posts;

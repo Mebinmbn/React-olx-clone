@@ -1,7 +1,8 @@
 // import React from "react";
 import "./Banner.css";
+import PropTypes from "prop-types";
 
-function Banner() {
+function Banner({ setSelectedCategory }) {
   return (
     <div className="bannerParentDiv">
       <div className="bannerChildDiv">
@@ -10,10 +11,34 @@ function Banner() {
             <span>ALL CATEGORIES</span>
           </div>
           <div className="otherQuickOptions" style={{ cursor: "pointer" }}>
-            <span>Cars</span>
-            <span>Motorcy...</span>
-            <span>Mobile Ph...</span>
-            <span>For Sale:Houses & Apart...</span>
+            <span
+              onClick={() => {
+                setSelectedCategory("Automobile");
+              }}
+            >
+              Automobile
+            </span>
+            <span
+              onClick={() => {
+                setSelectedCategory("Electronic");
+              }}
+            >
+              Electronic
+            </span>
+            <span
+              onClick={() => {
+                setSelectedCategory("Real Estate");
+              }}
+            >
+              Real Estate
+            </span>
+            <span
+              onClick={() => {
+                setSelectedCategory("Agriculture");
+              }}
+            >
+              Agriculture
+            </span>
             <span>Scoot...</span>
             <span>Commercial & Other Ve...</span>
             <span>For Rent: House & Apart...</span>
@@ -26,5 +51,8 @@ function Banner() {
     </div>
   );
 }
+Banner.propTypes = {
+  setSelectedCategory: PropTypes.func.isRequired,
+};
 
 export default Banner;

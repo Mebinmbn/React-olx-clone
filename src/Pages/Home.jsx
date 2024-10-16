@@ -6,12 +6,17 @@ import Footer from "../components/Footer/Footer";
 
 function Home() {
   const [searchText, setSearchText] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   return (
     <div className="homeParentDiv">
-      <Header setSearchText={setSearchText} /> {/* Corrected prop name */}
-      <Banner />
-      <Post searchText={searchText} />
+      <Header setSearchText={setSearchText} />
+      <Banner setSelectedCategory={setSelectedCategory} />
+      <Post
+        searchText={searchText}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
       <Footer />
     </div>
   );
